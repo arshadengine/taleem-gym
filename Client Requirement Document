@@ -1,0 +1,87 @@
+Client Requirement Document
+Project Name: TALEEM GYM – Admin Dashboard (PWA)
+Prepared For: Gym Owner / Admin
+Platform: Progressive Web App (PWA)
+Version: 1.0 (MVP Scope)
+1.  Project Objective
+To develop a mobile-friendly admin dashboard that enables gym owners to manage members, track
+attendance, and handle both offline and online payments efficiently.
+2.  Platform Overview
+The system will be a Progressive Web App (PWA):
+• Accessible via browser
+• Installable on mobile devices
+• Optimized for Android usage
+• Fast loading with basic offline support
+3.  Core Functional Requirements
+3.1 Dashboard Overview
+The dashboard will display:
+• Total active members
+• Expired memberships
+• Daily attendance count
+• Revenue summary (online + offline combined)
+3.2 Member Management
+Admin can:
+• Add new members
+• Edit member details
+• View member list
+Each member includes:
+• Name
+• Phone number
+• Membership plan
+• Start & expiry date
+• Status (Active / Expired)
+3.3 Attendance Management
+• Mark daily attendance
+• View attendance logs
+• Track individual attendance history
+3.4 Membership Plans
+• Create plans (Monthly, Quarterly, etc.)
+• Assign plans to members
+• Track validity and expiry
+3.5 Payment Management
+3.5.1 Offline Payments
+• Record manual payments (cash/UPI/etc.)
+• View payment history
+3.5.2 Online Payment Integration
+The system will support online payment collection with:
+• Payment link or in-app payment option
+• Integration with a payment gateway (e.g., Razorpay / Stripe)
+• Automatic payment status updates (Success / Failed / Pending)
+• Payment records linked to members
+3.6 Notifications & Alerts
+• Membership expiry reminders
+• Payment status alerts
+• Dashboard notifications for key actions
+4.  Security Requirements
+• Secure admin authentication
+• Secure payment processing via trusted gateway
+• No storage of sensitive card/payment details on system
+5.  User Interface & Experience
+• Clean, minimal interface
+• Mobile-first design
+• Easy navigation
+• Fast interaction for daily usage
+6.  Performance Requirements
+• Load time under 3 seconds
+• Smooth performance on standard Android devices
+• Reliable payment status updates
+7.  Excluded Features
+• Member enquiry system
+• Staff management
+• Advanced analytics
+8.  Deliverables
+• Functional PWA (installable)
+• Admin dashboard with all listed features
+• Payment gateway integration
+• Backend + database setup
+• Deployment-ready system
+9.  Future Enhancements
+• Member mobile app
+• Advanced financial reports
+• Multi-admin roles
+10.  Approval
+This document defines the scope of the initial version.
+Additional features will be treated as future upgrades.
+Client Name: _______________________
+Signature: _______________________
+Date: _______________________
