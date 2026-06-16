@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useGym } from '../../context/GymContext';
-import { CreditCard, History, Snowflake, AlertCircle, ArrowRight, CheckCircle2, Clock } from 'lucide-react';
+import { History, Snowflake, CheckCircle2 } from 'lucide-react';
 
 const Payments = () => {
-  const { plans, requests, submitRequest } = useGym();
+  const { members, plans, requests, submitRequest } = useGym();
   const user = JSON.parse(localStorage.getItem('gym_user'));
+  const memberData = members.find(m => m.id === user.id) || user;
   const [activeTab, setActiveTab] = useState('plans');
   const [requestStatus, setRequestStatus] = useState(null);
 
@@ -115,10 +116,80 @@ const Payments = () => {
         </div>
       ) : (
         <div className="grid-cols-1">
-          <div className="glass-card" style={{padding: '4rem 2rem', textAlign: 'center', border: '1px solid #111'}}>
-            <History size={48} style={{opacity: 0.1, marginBottom: '1.5rem'}} />
-            <p style={{color: 'var(--text-dim)', fontSize: '0.875rem', fontWeight: '700'}}>OFFLINE TRANSACTION HISTORY ONLY</p>
-            <p style={{fontSize: '0.7rem', color: '#444', marginTop: '0.5rem'}}>Online payments coming in next update</p>
+          {/* Remaining Balance Card */}
+          <div className="glass-card" style={{padding: '2rem', background: '#050505', border: '1px solid #111', marginBottom: '2rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center'}}>
+            <div>
+              <div style={{fontWeight: '800', fontSize: '0.9rem', color: 'var(--text-dim)'}}>REMAINING BALANCE</div>
+              <div style={{fontSize: '0.75rem', color: '#888', marginTop: '0.25rem'}}>Outstanding balance for this period</div>
+            </div>
+            <div style={{fontSize: '2rem', fontWeight: '900', color: (memberData.remainingBalance || 0) > 0 ? '#ff4444' : '#10b981'}}>
+              ₹{memberData.remainingBalance || 0}
+            </div>
+          </div>
+
+          <h3 style={{marginBottom: '1.5rem', fontSize: '0.875rem', letterSpacing: '0.1em', fontWeight: '800', color: 'var(--text-dim)'}}>TRANSACTION HISTORY</h3>
+          
+          <div style={{display: 'flex', flexDirection: 'column', gap: '1rem'}}>
+            {memberData.paymentHistory && memberData.paymentHistory.length > 0 ? (
+              memberData.paymentHistory.map(payment => (
+                <div key={payment.id} className="glass-card" style={{padding: '1.25rem 2rem', background: '#0a0a0a', display: 'flex', justifyContent: 'space-between', alignItems: 'center'}}>
+                  <div>
+                    <div style={{fontWeight: '900', fontSize: '1.15rem', color: '#fff'}}>₹{payment.amount}</div>
+                    <div style={{fontSize: '0.7rem', color: 'var(--text-dim)', marginTop: '0.25rem'}}>
+                      {payment.date?.toDate ? payment.date.toDate().toLocaleDateString('en-GB') : new Date(payment.date).toLocaleDateString('en-GB')}
+                      {payment.type ? ` • ${payment.type.toUpperCase()}` : ''}
+                    </div>
+                  </div>
+                  <div style={{display: 'flex', alignItems: 'center', gap: '1rem'}}>
+                    <span className="badge badge-secondary" style={{fontSize: '0.65rem', background: '#111', border: '1px solid #222', padding: '0.35rem 0.75rem'}}>
+                      {payment.method?.toUpperCase()}
+                    </span>
+                    <button 
+                      className="btn btn-secondary" 
+                      style={{padding: '0.5rem 1rem', fontSize: '0.7rem', border: 'none', background: '#111', width: 'auto'}}
+                      onClick={() => {
+                        const printWindow = window.open('', '_blank');
+                        printWindow.document.write(`
+                          <html>
+                            <head>
+                              <title>Receipt - Taleem Gym</title>
+                              <style>
+                                body { font-family: sans-serif; padding: 40px; text-align: center; background: #fff; color: #000; }
+                                .receipt { border: 2px solid #000; padding: 30px; display: inline-block; text-align: left; min-width: 300px; }
+                                h1 { border-bottom: 2px solid #000; padding-bottom: 10px; margin-top: 0; }
+                                .row { display: flex; justify-content: space-between; margin: 15px 0; border-bottom: 1px dashed #ccc; padding-bottom: 5px; }
+                                .footer { margin-top: 30px; font-size: 12px; color: #666; text-align: center; }
+                              </style>
+                            </head>
+                            <body>
+                              <div class="receipt">
+                                <h1>TALEEM GYM</h1>
+                                <div class="row"><span>Receipt ID:</span> <strong>${payment.id}</strong></div>
+                                <div class="row"><span>Member:</span> <strong>${memberData.name}</strong></div>
+                                <div class="row"><span>Amount:</span> <strong>₹${payment.amount}</strong></div>
+                                <div class="row"><span>Date:</span> <strong>${payment.date?.toDate ? payment.date.toDate().toLocaleDateString('en-GB') : new Date(payment.date).toLocaleDateString('en-GB')}</strong></div>
+                                <div class="row"><span>Payment Method:</span> <strong>${payment.method}</strong></div>
+                                <div class="footer">Thank you for choosing Taleem Gym!</div>
+                              </div>
+                              <script>window.print();</script>
+                            </body>
+                          </html>
+                        `);
+                        printWindow.document.close();
+                      }}
+                    >
+                      RECEIPT
+                    </button>
+                  </div>
+                </div>
+              ))
+            ) : (
+              <div className="glass-card" style={{padding: '4rem 2rem', textAlign: 'center', border: '1px solid #111'}}>
+                <History size={48} style={{opacity: 0.1, marginBottom: '1.5rem'}} />
+                <p style={{color: 'var(--text-dim)', fontSize: '0.875rem', fontWeight: '700'}}>NO TRANSACTION HISTORY</p>
+                <p style={{fontSize: '0.7rem', color: '#444', marginTop: '0.5rem'}}>You have no payment records yet.</p>
+              </div>
+            )}
           </div>
         </div>
       )}

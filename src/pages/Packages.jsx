@@ -3,45 +3,27 @@ import { useNavigate } from 'react-router-dom';
 import PublicHeader from '../components/PublicHeader';
 import PublicFooter from '../components/PublicFooter';
 
-const GroupX = () => {
+const Packages = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
-  const groups = [
-    { 
-      title: 'Specialized Zumba Batches', 
-      img: 'https://taleemthefitnesszone.in/images/facilities/zumba1.jpg', 
-      desc: 'There are several different kinds of Zumba classes, from Group X Zumba workouts to classes like Zumba Toning that incorporate weights for additional calorie burning and strength training.', 
-      slug: 'zumba' 
-    },
-    { 
-      title: 'Specialized Yoga Batches', 
-      img: 'https://taleemthefitnesszone.in/images/facilities/yogas.jpg', 
-      desc: 'Yoga is an old discipline from India. It is both spiritual and physical. Yoga uses breathing techniques, exercise and meditation. It helps to improve health and happiness.', 
-      slug: 'yoga' 
-    },
-    { 
-      title: 'Specialized Kids Batches', 
-      img: 'https://taleemthefitnesszone.in/images/facilities/kidsy.jpg', 
-      desc: 'Training in various western dance form includes Basic Intermediate and Advance level.', 
-      slug: 'kids' 
-    }
+  const gymPackages = [
+    { name: 'One Month', price: '1500', features: ['2 Days Personal Training', 'Complimentary Group X Activities'] },
+    { name: 'Quarterly', price: '4000', features: ['2 Days Personal Training', 'Complimentary Group X Activities'] },
+    { name: 'Half Yearly', price: '5500', features: ['2 Days Personal Training', 'Complimentary Group X Activities'] },
+    { name: 'Annual', price: '6999', features: ['2 Days Personal Training', 'Complimentary Group X Activities'] }
   ];
 
-  const packages = [
+  const zumbaYogaPackages = [
     { name: 'One Month', price: '1000', features: ['2 Days Personal Training', 'Complimentary Group X Activities'] },
     { name: 'Quarterly', price: '2700', features: ['2 Days Personal Training', 'Complimentary Group X Activities'] },
     { name: 'Half Yearly', price: '4500', features: ['2 Days Personal Training', 'Complimentary Group X Activities'] },
     { name: 'Annual', price: '6000', features: ['2 Days Personal Training', 'Complimentary Group X Activities'] }
   ];
 
-  const navTo = (path) => {
-    navigate(path);
-    window.scrollTo(0, 0);
-  };
 
   return (
     <div className="public-page">
@@ -50,143 +32,26 @@ const GroupX = () => {
       {/* Page Banner */}
       <section className="subpage-banner" style={{ backgroundImage: 'url(https://taleemthefitnesszone.in/images/background/page-banner-bg.jpg)' }}>
         <div className="auto-container">
-          <h1>GROUP X STUDIO</h1>
+          <h1>Our Packages</h1>
         </div>
       </section>
 
-      {/* Batches Grid */}
+      {/* Packages Content */}
       <section style={{ padding: '80px 0', background: '#ffffff' }}>
         <div className="auto-container">
-          <div className="sec-title">
-            <h3>OUR FACILITIES</h3>
-            <h2>We offer best trainings to<br />achieve the best results</h2>
-          </div>
-
-          <div style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
-            gap: '30px',
-            marginTop: '40px'
-          }}>
-            {groups.map((group, idx) => (
-              <div 
-                key={idx}
-                style={{
-                  background: '#ffffff',
-                  boxShadow: '0 5px 20px rgba(0,0,0,0.04)',
-                  border: '1px solid #eeeeee',
-                  overflow: 'hidden',
-                  display: 'flex',
-                  flexDirection: 'column',
-                  transition: 'all 0.3s ease'
-                }}
-                className="group-card"
-                onMouseOver={e => {
-                  e.currentTarget.style.transform = 'translateY(-10px)';
-                  e.currentTarget.style.boxShadow = '0 15px 30px rgba(207,32,38,0.1)';
-                }}
-                onMouseOut={e => {
-                  e.currentTarget.style.transform = 'translateY(0)';
-                  e.currentTarget.style.boxShadow = '0 5px 20px rgba(0,0,0,0.04)';
-                }}
-              >
-                {/* Image Wrap */}
-                <div style={{
-                  height: '240px',
-                  overflow: 'hidden',
-                  position: 'relative',
-                  cursor: 'pointer'
-                }} onClick={() => navTo(`/page/${group.slug}`)}>
-                  <img 
-                    src={group.img} 
-                    alt={group.title}
-                    style={{
-                      width: '100%',
-                      height: '100%',
-                      objectFit: 'cover',
-                      transition: 'transform 0.5s ease'
-                    }}
-                    onMouseOver={e => e.currentTarget.style.transform = 'scale(1.1)'}
-                    onMouseOut={e => e.currentTarget.style.transform = 'scale(1)'}
-                  />
-                  <div style={{
-                    position: 'absolute',
-                    top: 0, left: 0, right: 0, bottom: 0,
-                    background: 'rgba(12,31,52,0.15)',
-                  }}></div>
-                </div>
-
-                {/* Content */}
-                <div style={{
-                  padding: '25px',
-                  display: 'flex',
-                  flexDirection: 'column',
-                  flex: 1
-                }}>
-                  <h3 style={{
-                    fontSize: '18px',
-                    fontWeight: '800',
-                    color: '#0c1f34',
-                    marginBottom: '15px',
-                    fontFamily: 'Montserrat, sans-serif'
-                  }}>
-                    {group.title}
-                  </h3>
-                  <p style={{
-                    color: '#666',
-                    fontSize: '13px',
-                    lineHeight: '1.6',
-                    marginBottom: '20px',
-                    flex: 1,
-                    textAlign: 'justify'
-                  }}>
-                    {group.desc}
-                  </p>
-                  <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
-                    <span 
-                      onClick={() => navTo(`/page/${group.slug}`)}
-                      style={{
-                        color: '#CF2026',
-                        fontSize: '11px',
-                        fontWeight: '800',
-                        textTransform: 'uppercase',
-                        cursor: 'pointer',
-                        display: 'inline-flex',
-                        alignItems: 'center',
-                        gap: '6px',
-                        fontFamily: 'Montserrat, sans-serif'
-                      }}
-                    >
-                      <i className="fa fa-angle-right" style={{ fontSize: '14px' }}></i> Read More
-                    </span>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Packages Section */}
-      <section style={{
-        padding: '80px 0',
-        background: '#f9fbfd',
-        borderTop: '1px solid #eeeeee',
-        borderBottom: '1px solid #eeeeee'
-      }}>
-        <div className="auto-container">
-          <div className="sec-title">
+          {/* Gym Packages */}
+          <div className="sec-title" style={{ marginBottom: '40px' }}>
             <h3>PLANS AND PRICINGS</h3>
-            <h2>OUR PACKAGES FOR ZUMBA AND YOGA</h2>
+            <h2>OUR PACKAGES FOR GYM</h2>
           </div>
 
           <div style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
             gap: '30px',
-            marginTop: '40px'
+            marginBottom: '60px'
           }}>
-            {packages.map((pkg, idx) => (
+            {gymPackages.map((pkg, idx) => (
               <div 
                 key={idx}
                 style={{
@@ -258,7 +123,122 @@ const GroupX = () => {
                   </ul>
 
                   <button 
-                    onClick={() => navTo('/contact')}
+                    onClick={() => navigate('/contact')}
+                    style={{
+                      background: 'transparent',
+                      color: '#0c1f34',
+                      border: '2px solid #0c1f34',
+                      padding: '8px 20px',
+                      fontSize: '11px',
+                      fontWeight: '800',
+                      textTransform: 'uppercase',
+                      cursor: 'pointer',
+                      transition: 'all 0.3s ease',
+                      fontFamily: 'Montserrat, sans-serif'
+                    }}
+                    onMouseOver={e => {
+                      e.target.style.background = '#CF2026';
+                      e.target.style.borderColor = '#CF2026';
+                      e.target.style.color = '#ffffff';
+                    }}
+                    onMouseOut={e => {
+                      e.target.style.background = 'transparent';
+                      e.target.style.borderColor = '#0c1f34';
+                      e.target.style.color = '#0c1f34';
+                    }}
+                  >
+                    Order Now
+                  </button>
+                </div>
+
+              </div>
+            ))}
+          </div>
+
+          {/* Zumba & Yoga Packages */}
+          <div className="sec-title" style={{ marginBottom: '40px' }}>
+            <h3>PLANS AND PRICINGS</h3>
+            <h2>OUR PACKAGES FOR ZUMBA AND YOGA</h2>
+          </div>
+
+          <div style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
+            gap: '30px'
+          }}>
+            {zumbaYogaPackages.map((pkg, idx) => (
+              <div 
+                key={idx}
+                style={{
+                  background: '#ffffff',
+                  border: '1px solid #eeeeee',
+                  boxShadow: '0 5px 20px rgba(0,0,0,0.03)',
+                  transition: 'all 0.3s ease',
+                  position: 'relative'
+                }}
+                className="price-table"
+                onMouseOver={e => {
+                  e.currentTarget.style.transform = 'translateY(-10px)';
+                  e.currentTarget.style.boxShadow = '0 15px 30px rgba(207,32,38,0.12)';
+                  e.currentTarget.querySelector('.price-title-box').style.background = '#CF2026';
+                }}
+                onMouseOut={e => {
+                  e.currentTarget.style.transform = 'translateY(0)';
+                  e.currentTarget.style.boxShadow = '0 5px 20px rgba(0,0,0,0.03)';
+                  e.currentTarget.querySelector('.price-title-box').style.background = '#0c1f34';
+                }}
+              >
+                {/* Title */}
+                <div 
+                  className="price-title-box"
+                  style={{
+                    background: '#0c1f34',
+                    color: '#ffffff',
+                    padding: '20px',
+                    textAlign: 'center',
+                    transition: 'background 0.3s ease'
+                  }}
+                >
+                  <h3 style={{
+                    fontSize: '18px',
+                    fontWeight: '800',
+                    margin: 0,
+                    color: '#ffffff',
+                    fontFamily: 'Montserrat, sans-serif'
+                  }}>
+                    {pkg.name}
+                  </h3>
+                </div>
+
+                {/* Inner */}
+                <div style={{ padding: '30px 20px', textAlign: 'center' }}>
+                  <div style={{
+                    fontSize: '36px',
+                    fontWeight: '900',
+                    color: '#CF2026',
+                    fontFamily: 'Montserrat, sans-serif',
+                    marginBottom: '20px'
+                  }}>
+                    {pkg.price} <span style={{ fontSize: '16px', fontWeight: '700', verticalAlign: 'super' }}>Rs</span>
+                  </div>
+
+                  <ul style={{
+                    listStyle: 'none',
+                    padding: 0,
+                    margin: '0 0 30px 0',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    gap: '12px'
+                  }}>
+                    {pkg.features.map((feat, fIdx) => (
+                      <li key={fIdx} style={{ fontSize: '13px', color: '#666' }}>
+                        {feat}
+                      </li>
+                    ))}
+                  </ul>
+
+                  <button 
+                    onClick={() => navigate('/contact')}
                     style={{
                       background: 'transparent',
                       color: '#0c1f34',
@@ -297,4 +277,4 @@ const GroupX = () => {
   );
 };
 
-export default GroupX;
+export default Packages;

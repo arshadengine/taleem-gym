@@ -1,7 +1,7 @@
 import React, { useRef, useState, useCallback, useEffect } from 'react';
 import { motion, useSpring, useTransform } from 'framer-motion';
 
-export function Spotlight({
+export const Spotlight = React.memo(function Spotlight({
   size = 400,
   springOptions = { bounce: 0 },
   color = 'rgba(255, 255, 255, 0.15)',
@@ -72,4 +72,4 @@ export function Spotlight({
       }}
     />
   );
-}
+});

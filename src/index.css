@@ -383,3 +383,205 @@ select.input {
 .nav-item.active {
   color: #ffffff;
 }
+
+/* ==========================================
+   PUBLIC PAGE DESIGN SYSTEM (STAYFIT CLONE)
+   ========================================== */
+.public-page {
+  --pub-primary: #CF2026;
+  --pub-navy-dark: #0c1f34;
+  --pub-navy-light: #0e243b;
+  --pub-text-body: #2d2d2d;
+  --pub-text-sub: #777d83;
+  --pub-bg-light: #ffffff;
+  --pub-bg-alt: #f9fbfd;
+  --pub-border-light: #eeeeee;
+  
+  background-color: var(--pub-bg-light) !important;
+  color: var(--pub-text-body) !important;
+  font-family: 'Open Sans', sans-serif !important;
+  line-height: 1.8 !important;
+  font-size: 15px !important;
+  min-height: 100vh;
+}
+
+.public-page h1, 
+.public-page h2, 
+.public-page h3, 
+.public-page h4, 
+.public-page h5, 
+.public-page h6 {
+  font-family: 'Montserrat', sans-serif !important;
+  color: #111111;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+/* Transitions */
+.public-page .anim-3 {
+  transition: all 0.3s ease;
+}
+.public-page .anim-5 {
+  transition: all 0.5s ease;
+}
+
+/* Custom layout containers */
+.public-page .auto-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 15px;
+  width: 100%;
+}
+
+/* Section Titles */
+.public-page .sec-title {
+  text-align: center;
+  margin-bottom: 50px;
+}
+.public-page .sec-title h3 {
+  color: var(--pub-primary);
+  font-size: 14px;
+  font-weight: 800;
+  letter-spacing: 2px;
+  margin-bottom: 8px;
+}
+.public-page .sec-title h2 {
+  font-size: 32px;
+  font-weight: 900;
+  color: #111111;
+  line-height: 1.2;
+}
+
+/* Custom buttons */
+.public-page .btn-red {
+  background-color: var(--pub-primary);
+  color: #ffffff !important;
+  border: 2px solid var(--pub-primary);
+  padding: 12px 28px;
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+  font-family: 'Montserrat', sans-serif;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border-radius: 0;
+  letter-spacing: 1px;
+}
+
+.public-page .btn-red:hover {
+  background-color: transparent;
+  color: var(--pub-primary) !important;
+}
+
+.public-page .btn-white {
+  background-color: #ffffff;
+  color: var(--pub-navy-dark) !important;
+  border: 2px solid #ffffff;
+  padding: 12px 28px;
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+  font-family: 'Montserrat', sans-serif;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border-radius: 0;
+  letter-spacing: 1px;
+}
+
+.public-page .btn-white:hover {
+  background-color: transparent;
+  color: #ffffff !important;
+}
+
+.public-page .btn-dark {
+  background-color: var(--pub-navy-dark);
+  color: #ffffff !important;
+  border: 2px solid var(--pub-navy-dark);
+  padding: 12px 28px;
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+  font-family: 'Montserrat', sans-serif;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border-radius: 0;
+  letter-spacing: 1px;
+}
+
+.public-page .btn-dark:hover {
+  background-color: transparent;
+  color: var(--pub-navy-dark) !important;
+}
+
+/* Subpage banner section */
+.public-page .subpage-banner {
+  background-size: cover;
+  background-position: center;
+  padding: 80px 0;
+  position: relative;
+  text-align: center;
+  color: #ffffff;
+  margin-top: 80px; /* Space for fixed header */
+}
+
+.public-page .subpage-banner::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(12, 31, 52, 0.85); /* Navy blue overlay */
+  z-index: 1;
+}
+
+.public-page .subpage-banner .auto-container {
+  position: relative;
+  z-index: 2;
+}
+
+.public-page .subpage-banner h1 {
+  font-size: 40px;
+  font-weight: 900;
+  color: #ffffff;
+  margin: 0;
+  letter-spacing: 2px;
+}
+
+/* 2-Column Template Layout */
+.public-page .page-columns {
+  padding: 60px 0;
+  background: #ffffff;
+}
+
+.public-page .columns-row {
+  display: flex;
+  gap: 40px;
+}
+
+.public-page .left-column {
+  flex: 3;
+  min-width: 0;
+}
+
+.public-page .right-column {
+  flex: 1;
+  width: 280px;
+  flex-shrink: 0;
+}
+
+@media (max-width: 991px) {
+  .public-page .columns-row {
+    flex-direction: column;
+  }
+  .public-page .right-column {
+    width: 100%;
+  }
+}
+

@@ -24,6 +24,11 @@ import Gallery from './pages/Gallery';
 import GroupX from './pages/GroupX';
 import PageDetail from './pages/PageDetail';
 import Landing from './pages/Landing';
+import About from './pages/About';
+import DirectorDesk from './pages/DirectorDesk';
+import Facilities from './pages/Facilities';
+import Packages from './pages/Packages';
+import Contact from './pages/Contact';
 import InstallPWA from './components/InstallPWA';
 
 const AdminLayout = ({ children }) => {
@@ -181,6 +186,11 @@ function App() {
           <Route path="/" element={<Landing />} />
           <Route path="/gallery" element={<Gallery />} />
           <Route path="/groupx" element={<GroupX />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/director-desk" element={<DirectorDesk />} />
+          <Route path="/facilities" element={<Facilities />} />
+          <Route path="/packages" element={<Packages />} />
+          <Route path="/contact" element={<Contact />} />
           <Route path="/page/:slug" element={<PageDetail />} />
           
           <Route path="/login" element={<Login />} />

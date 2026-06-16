@@ -1,6 +1,8 @@
 import React, { useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { ArrowLeft } from 'lucide-react';
+import PublicHeader from '../components/PublicHeader';
+import PublicFooter from '../components/PublicFooter';
+import FacilitySidebar from '../components/FacilitySidebar';
 
 const pageData = {
   'strength-training': {
@@ -41,7 +43,7 @@ const pageData = {
   'trainers': {
     title: 'Certified Trainers',
     img: 'https://taleemthefitnesszone.in/images/facilities/ctt.jpg',
-    content: 'A personal trainer is an individual certified to have a varying degree of knowledge of general fitness involved in exercise prescription and instruction. They motivate clients by setting goals and providing feedback and accountability. Our coaches are internationally certified and dedicated entirely to your success.'
+    content: 'A personal trainer is an individual certified to have a varying degree of knowledge of general fitness involved in exercise prescription and instruction. They motivate clients by setting goals and providing feedback and accountability to clients. Our coaches are internationally certified and dedicated entirely to your success.'
   },
   'nutrition': {
     title: 'Nutrition',
@@ -59,7 +61,7 @@ const pageData = {
     content: 'Historically developed from karate mixed with boxing, it is practiced for self-defense or general fitness. Cardio Kickboxing is a fun-loving activity in which this sport is performed on music beats. Release stress and punch away the calories in this high-octane class.'
   },
   'spa': {
-    title: 'Spa & Recovery',
+    title: 'Spa & Steam Bath',
     img: 'https://taleemthefitnesszone.in/images/facilities/spaa.jpg',
     content: 'Proper refreshment after a workout includes a steam bath and shower. Relax your muscles, speed up recovery, and detoxify your skin in our luxurious spa and steam rooms. Recovery is just as important as the workout itself.'
   },
@@ -67,16 +69,6 @@ const pageData = {
     title: 'Specialized Kids Batches',
     img: 'https://taleemthefitnesszone.in/images/facilities/kidsy.jpg',
     content: 'Training in various western dance forms includes Basic, Intermediate, and Advance levels. We provide a fun, safe, and engaging environment for children to learn fitness and dance early in life, ensuring they build healthy habits for their future.'
-  },
-  'about-us': {
-    title: 'About Taleem Gym',
-    img: 'https://taleemthefitnesszone.in/images/main-slider/gym4.png',
-    content: 'Taleem The Fitness Zone is the leading fitness center in Pune, India with world-class health club equipment, gym trainers, group exercise classes, freestyle training & much more. We believe that proper workout, healthy nutrition habits, and needful rest will combine to give you a healthy lifestyle. We are more than just a gym; we are a community of fitness enthusiasts.'
-  },
-  'director': {
-    title: 'Director Desk',
-    img: 'https://taleemthefitnesszone.in/images/main-slider/gym3.jpg',
-    content: 'Welcome to Taleem Gym! Our vision is to empower individuals to achieve their maximum physical and mental potential. We are dedicated to providing the best facilities and guidance to ensure every member reaches their personal fitness goals. Our commitment is to quality, hygiene, and outstanding customer service.'
   }
 };
 
@@ -91,77 +83,81 @@ const PageDetail = () => {
 
   if (!data) {
     return (
-      <div style={{ textAlign: 'center', padding: '10rem 2rem', fontFamily: 'Inter' }}>
-        <h2>Page not found</h2>
-        <button className="btn" onClick={() => navigate('/')} style={{ marginTop: '2rem', background: '#1c75bc', color: '#fff', padding: '0.75rem 1.5rem', border: 'none', borderRadius: '4px' }}>Return Home</button>
+      <div className="public-page" style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
+        <PublicHeader />
+        <div style={{ textAlign: 'center', padding: '120px 20px', flex: 1 }}>
+          <h2 style={{ fontSize: '24px', fontWeight: '800' }}>Page not found</h2>
+          <button className="btn-dark" onClick={() => navigate('/')} style={{ marginTop: '20px' }}>Return Home</button>
+        </div>
+        <PublicFooter />
       </div>
     );
   }
 
   return (
-    <div style={{ background: '#f5f7fa', minHeight: '100vh', color: '#333', fontFamily: 'Inter, sans-serif' }}>
-      {/* Navigation */}
-      <nav style={{ 
-        position: 'fixed', top: 0, left: 0, right: 0, 
-        background: '#fff', 
-        boxShadow: '0 2px 10px rgba(0,0,0,0.1)',
-        zIndex: 100, padding: '1rem 2rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center' 
-      }}>
-        <div style={{ display: 'flex', alignItems: 'center', cursor: 'pointer' }} onClick={() => navigate('/')}>
-          <img src="https://taleemthefitnesszone.in/images/logoo.png" alt="Taleem Logo" style={{ height: '40px' }} />
-        </div>
-        
-        <button 
-          className="btn" 
-          style={{ 
-            background: '#1c75bc', 
-            color: '#fff', 
-            border: 'none', 
-            padding: '0.5rem 1rem',
-            fontWeight: '800',
-            borderRadius: '0.25rem',
-            display: 'flex',
-            alignItems: 'center',
-            gap: '0.5rem'
-          }} 
-          onClick={() => navigate(-1)}
-        >
-          <ArrowLeft size={16} /> GO BACK
-        </button>
-      </nav>
+    <div className="public-page">
+      <PublicHeader />
 
-      {/* Hero Section */}
-      <div style={{ 
-        marginTop: '70px',
-        background: `url(${data.img}) center/cover`,
-        padding: '8rem 2rem',
-        textAlign: 'center',
-        position: 'relative'
-      }}>
-        <div style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, background: 'rgba(0,0,0,0.7)' }}></div>
-        <div style={{ position: 'relative', zIndex: 10 }}>
-          <h1 style={{ color: '#fff', fontSize: '3.5rem', fontWeight: '900', textTransform: 'uppercase', letterSpacing: '2px' }}>{data.title}</h1>
+      {/* Page Banner */}
+      <section className="subpage-banner" style={{ backgroundImage: `url(${data.img})` }}>
+        <div className="auto-container">
+          <h1>{data.title}</h1>
         </div>
-      </div>
+      </section>
 
-      {/* Content Section */}
-      <div style={{ padding: '6rem 5%', maxWidth: '900px', margin: '0 auto', background: '#fff', transform: 'translateY(-4rem)', borderRadius: '1rem', boxShadow: '0 20px 40px rgba(0,0,0,0.08)', position: 'relative', zIndex: 20 }}>
-        <h2 style={{ fontSize: '2rem', fontWeight: '800', color: '#1c75bc', marginBottom: '1.5rem' }}>{data.title}</h2>
-        <div style={{ width: '60px', height: '4px', background: '#1c75bc', marginBottom: '2rem' }}></div>
-        <p style={{ fontSize: '1.15rem', lineHeight: '1.8', color: '#555' }}>
-          {data.content}
-        </p>
-        
-        <div style={{ marginTop: '4rem', textAlign: 'center' }}>
-          <h3 style={{ fontSize: '1.5rem', fontWeight: '800', marginBottom: '1.5rem' }}>Ready to start your journey?</h3>
-          <button className="btn" onClick={() => navigate('/login')} style={{ background: '#222', color: '#fff', padding: '1rem 2.5rem', fontSize: '1.1rem', fontWeight: '800', border: 'none', borderRadius: '30px', boxShadow: '0 10px 20px rgba(0,0,0,0.2)' }}>JOIN NOW</button>
+      {/* 2-Column Section */}
+      <section className="page-columns">
+        <div className="auto-container">
+          <div className="columns-row">
+            
+            {/* Left Content Column */}
+            <div className="left-column">
+              <div style={{ position: 'relative', marginBottom: '30px', overflow: 'hidden' }}>
+                <img 
+                  src={data.img} 
+                  alt={data.title}
+                  style={{ width: '100%', maxHeight: '450px', objectFit: 'cover' }}
+                />
+              </div>
+
+              <h2 style={{ fontSize: '26px', fontWeight: '800', color: '#0c1f34', marginBottom: '20px' }}>
+                {data.title}
+              </h2>
+              <div style={{ width: '60px', height: '3px', background: '#CF2026', marginBottom: '25px' }}></div>
+              
+              <p style={{ fontSize: '15px', lineHeight: '1.8', color: '#555', textAlign: 'justify', marginBottom: '30px' }}>
+                {data.content}
+              </p>
+
+              <div style={{
+                background: '#f8fafc',
+                border: '1px dashed #CF2026',
+                padding: '30px',
+                textAlign: 'center',
+                marginTop: '40px'
+              }}>
+                <h3 style={{ fontSize: '18px', fontWeight: '800', marginBottom: '15px', color: '#0c1f34' }}>
+                  Ready to transform your fitness journey?
+                </h3>
+                <button 
+                  onClick={() => navigate('/login')} 
+                  className="btn-red"
+                >
+                  Join Us Today
+                </button>
+              </div>
+            </div>
+
+            {/* Right Sidebar Column */}
+            <div className="right-column">
+              <FacilitySidebar />
+            </div>
+
+          </div>
         </div>
-      </div>
-      
-      {/* Footer */}
-      <footer style={{ background: '#111', color: '#666', padding: '2rem', textAlign: 'center', fontSize: '0.85rem' }}>
-        &copy; 2024, All Rights Reserved. Design & Developed By TASKAS.
-      </footer>
+      </section>
+
+      <PublicFooter />
     </div>
   );
 };
